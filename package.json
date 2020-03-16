@@ -85,7 +85,7 @@
   ],
   "proxy": {
     "/api-dev-open": {
-      "target": "http://www.ximalaya.com",
+      "target": "http://www.google.com",
       "secure": true,
       "changeOrigin": true,
       "pathRewrite": {
