@@ -5,6 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "start": "yarn dev",
     "dev": "cross-env BUILD_ENV=development USE_HMR=true webpack-dev-server --hot --config build/webpack.config.dev.js --mode development --colors --profile",
     "dev:mock": "cross-env IS_MOCK=true npm run dev",
     "dev:page-a": "cross-env entry=page-a npm run dev",
@@ -35,7 +36,7 @@
     "art-template": "^4.13.2",
     "art-template-loader": "^1.4.3",
     "babel-eslint": "^10.0.2",
-    "babel-loader": "^8.0.4",
+    "babel-loader": "^8.1.0",
     "cache-loader": "^4.0.0",
     "clean-webpack-plugin": "^1.0.0",
     "cross-env": "^5.2.0",
