@@ -28,23 +28,23 @@ webpack 4 + babel 7
 
 > 推荐使用yarn进行包管理！
 
-```js
-yarn / yarn install    // 安装全部依赖包
+```bash
+yarn / yarn install    # 安装全部依赖包
 
-yarn dev               // 启动本地调试
-yarn dev:mock          // 启动本地调试，MockJs模拟接口数据
-yarn dev:page-a        // 启动本地调试，仅page-a页面
-yarn dev:page-b        // 启动本地调试，仅page-b页面
+yarn dev               # 启动本地调试
+yarn dev:mock          # 启动本地调试，MockJs模拟接口数据
+yarn dev:page-a        # 启动本地调试，仅page-a页面
+yarn dev:page-b        # 启动本地调试，仅page-b页面
 
-yarn build-dev         // 打包代码，publicPath以/打头（可通过本地起服务访问build后的代码）
-yarn http-server       // 启动http-server服务器，可用来访问yarn build-dev打包的代码
-yarn build-test        // 打包测试环境代码
-yarn build-prod        // 打包生产环境代码
+yarn build-dev         # 打包代码，publicPath以/打头（可通过本地起服务访问build后的代码）
+yarn http-server       # 启动http-server服务器，可用来访问yarn build-dev打包的代码
+yarn build-test        # 打包测试环境代码
+yarn build-prod        # 打包生产环境代码
 
-// watch模式，移除了js、css的压缩，节省时间（watch时需要build压缩版代码，可自行修改）。
-yarn watch-dev         // 启动watch模式，本地开发环境（通常用不上）
-yarn watch-test        // 启动watch模式，测试环境
-yarn watch-prod        // 启动watch模式，生产环境
+# watch模式，移除了js、css的压缩，节省时间（watch时需要build压缩版代码，可自行修改）。
+yarn watch-dev         # 启动watch模式，本地开发环境（通常用不上）
+yarn watch-test        # 启动watch模式，测试环境
+yarn watch-prod        # 启动watch模式，生产环境
 ```
 
 ## Yarn和NPM的选择？
@@ -53,18 +53,18 @@ yarn watch-prod        // 启动watch模式，生产环境
 
 ## Yarn常用命令
 
-```js
-yarn / yarn install                 // 安装全部（package.json）依赖包 —— npm install
+```bash
+yarn / yarn install                 # 安装全部（package.json）依赖包 —— npm install
 
-yarn run [dev]                      // 启动scripts命令
+yarn run [dev]                      # 启动scripts命令
 
-yarn add [pkgName]                  // 安装依赖包（默认安装到dependencies下） —— npm install [pkgName]
-yarn add [pkgName]@[version]        // 安装依赖包，指定版本 —— npm install [pkgName]@[version]
-yarn add [pkgName] -D               // 安装依赖包，指定到devDependencies —— npm install [pkgName] -D
-yarn remove [pkgName]               // 卸载依赖包 —— npm uninstall [pkgName]
+yarn add [pkgName]                  # 安装依赖包（默认安装到dependencies下） —— npm install [pkgName]
+yarn add [pkgName]@[version]        # 安装依赖包，指定版本 —— npm install [pkgName]@[version]
+yarn add [pkgName] -D               # 安装依赖包，指定到devDependencies —— npm install [pkgName] -D
+yarn remove [pkgName]               # 卸载依赖包 —— npm uninstall [pkgName]
 
-yarn upgrade [pkgName]              // 升级依赖包 —— npm update [pkgName]
-yarn upgrade [pkgName]@[version]    // 升级依赖包，指定版本
+yarn upgrade [pkgName]              # 升级依赖包 —— npm update [pkgName]
+yarn upgrade [pkgName]@[version]    # 升级依赖包，指定版本
 ```
 
 ##### 参考文档
