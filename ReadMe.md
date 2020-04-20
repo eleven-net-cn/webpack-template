@@ -76,31 +76,31 @@ yarn upgrade [pkgName]@[version]    // 升级依赖包，指定版本
 
 ## 目录结构
 
-```js
+```bash
 webpack-template
-     ├─ build                   // webpack配置
-     ├─ config                  // 构建（环境）相关配置
-     ├─ dist                    // build输出目录
-     ├─ dist-watch              // watch模式，build的输出目录
+     ├─ build                   # webpack配置
+     ├─ config                  # 构建（环境）相关配置
+     ├─ dist                    # build输出目录
+     ├─ dist-watch              # watch模式，build的输出目录
      ├─ node_modules
-     ├─ src                     // 源代码目录
-     │   ├─ assets                   // 静态资源、全局样式
-     │   ├─ common                   // 业务无关的通用组件
-     │   ├─ components               // 业务耦合的通用组件
-     │   ├─ constant                 // 常量配置
-     │   ├─ lib                      // 第三方工具包
-     │   ├─ mock                     // 开发调试，mock数据
-     │   ├─ pages                    // 页面级组件
-     │   ├─ service                  // 接口封装
-     │   ├─ utils                    // 工具
-     │   ├─ views                    // webpack打包入口、html模版
+     ├─ src                     # 源代码目录
+     │   ├─ assets                   # 静态资源、全局样式
+     │   ├─ common                   # 业务无关的通用组件
+     │   ├─ components               # 业务耦合的通用组件
+     │   ├─ constant                 # 常量配置
+     │   ├─ lib                      # 第三方工具包
+     │   ├─ mock                     # 开发调试，mock数据
+     │   ├─ pages                    # 页面级组件
+     │   ├─ service                  # 接口封装
+     │   ├─ utils                    # 工具
+     │   ├─ views                    # webpack打包入口、html模版
      │
-     ├─ .babelrc                // babel配置
-     ├─ .eslintignore           // eslint忽略配置
-     ├─ .eslintrc.js            // eslint配置
+     ├─ .babelrc                # babel配置
+     ├─ .eslintignore           # eslint忽略配置
+     ├─ .eslintrc.js            # eslint配置
      ├─ .gitignore
      ├─ package.json
-     ├─ postcss.config.js       // postcss配置
+     ├─ postcss.config.js       # postcss配置
      ├─ README.md
-     ├─ yarn.lock               // yarn锁定版本配置文件（自动生成）
+     ├─ yarn.lock               # yarn锁定版本配置文件（自动生成）
 ```
