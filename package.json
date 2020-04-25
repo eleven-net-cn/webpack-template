@@ -16,7 +16,8 @@
     "watch-dev": "cross-env BUILD_ENV=development IS_WATCH=true webpack -w --config build/webpack.config.watch.js --mode production --colors --profile",
     "watch-test": "cross-env BUILD_ENV=test IS_WATCH=true webpack -w --config build/webpack.config.watch.js --mode production --colors --profile",
     "watch-prod": "cross-env BUILD_ENV=production IS_WATCH=true webpack -w --config build/webpack.config.watch.js --mode production --colors --profile",
-    "http-server": "http-server dist"
+    "http-server": "http-server dist",
+    "analyzer": "http-server analyzer -o -p 1234"
   },
   "repository": {
     "type": "git",
@@ -69,6 +70,7 @@
     "url-loader": "^1.1.2",
     "vconsole": "^3.2.0",
     "webpack": "^4.28.3",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.2.0",
     "webpack-dev-server": "^3.1.10",
     "webpack-merge": "^4.1.5"

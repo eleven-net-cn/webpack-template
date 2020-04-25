@@ -7,6 +7,7 @@ const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const safePostCssParser = require('postcss-safe-parser')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 const utils = require('./utils')
 
 const shouldUseSourceMap = !!process.env.devtool
@@ -20,8 +21,16 @@ module.exports = merge(base, {
   },
   plugins: [
     ...utils.getHtmlWebpackPluginsProd(),
-    new CleanPlugin([path.resolve(__dirname, '..', 'dist/*')], {
+    new CleanPlugin([
+      path.resolve(__dirname, '..', 'dist/*'),
+      path.resolve(__dirname, '..', 'analyzer/*'),
+    ], {
       allowExternal: true,
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+      reportFilename: path.resolve(__dirname, '..', `analyzer/index.html`)
     }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:7].css',
