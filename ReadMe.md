@@ -12,58 +12,43 @@ https://webpack.eleven.net.cn
 webpack 4 + babel 7
 ```
 
-## 功能
-
-1. 普通 H5 开发中,引入组件化
-2. 引入 art-template 前端渲染引擎 —— 目前前端模版里速度最快
-3. 配置 dev-server 调试模式，proxy 代理接口调试
-4. 配置 watch 模式，方便在生产环境中用 Charles 映射到本地文件
-5. optimization 配置提取 runtime 代码
-6. splitChunks 配置，提取 vendor 主要缓存包，提取 common 次要缓存包
-7. 支持多页、多入口，自动扫描，可无限层级文件夹嵌套
-8. MockJs 模拟 mock 数据
-9. 接口代理
-10. eslint检查
-11. 常用性能优化手段
-12. 打包产物分析（webpack-bundle-analyzer）
-
 ## 运行命令
 
 - 安装依赖
 
-     ```bash
-     yarn / yarn install    # 安装全部依赖包
-     ```
+```bash
+yarn / yarn install    # 安装全部依赖包
+```
 
 - 开发调试
 
-     ```bash
-     yarn start/dev         # 启动本地调试
-     yarn dev:mock          # 启动本地调试，MockJs模拟接口数据
-     yarn dev:page-a        # 启动本地调试，仅page-a页面
-     yarn dev:page-b        # 启动本地调试，仅page-b页面
+```bash
+yarn start/dev         # 启动本地调试
+yarn dev:mock          # 启动本地调试，MockJs模拟接口数据
+yarn dev:page-a        # 启动本地调试，仅page-a页面
+yarn dev:page-b        # 启动本地调试，仅page-b页面
 
-     # watch模式，移除了js、css的压缩，节省时间（watch时需要build压缩版代码，可自行修改）。
-     yarn watch-dev         # 启动watch模式，本地开发环境（通常用不上）
-     yarn watch-test        # 启动watch模式，测试环境
-     yarn watch-prod        # 启动watch模式，生产环境
-     ```
+# watch模式，移除了js、css的压缩，节省时间（watch时需要build压缩版代码，可自行修改）。
+yarn watch-dev         # 启动watch模式，本地开发环境（通常用不上）
+yarn watch-test        # 启动watch模式，测试环境
+yarn watch-prod        # 启动watch模式，生产环境
+```
 
 - 打包
 
-     ```bash
-     yarn build-dev         # 打包代码，publicPath以/打头（可通过本地起服务访问build后的代码）
-     yarn build-test        # 打包测试环境代码
-     yarn build-prod        # 打包生产环境代码
-     
-     yarn http-server       # 启动http-server服务器，可用来访问yarn build-dev打包的代码
-     ```
+```bash
+yarn build-dev         # 打包代码，publicPath以/打头（可通过本地起服务访问build后的代码）
+yarn build-test        # 打包测试环境代码
+yarn build-prod        # 打包生产环境代码
+
+yarn http-server       # 启动http-server服务器，可用来访问 build 在本地的代码
+```
 
 - 打包产物分析
 
-     ```bash
-     yarn analyzer          # 查看最近一次打包的产物分析（webpack-bundle-analyzer）
-     ```
+```bash
+yarn analyzer          # 查看最近一次打包的产物分析（webpack-bundle-analyzer）
+```
 
 ## 目录
 
@@ -98,3 +83,18 @@ webpack-template
      ├─ README.md
      ├─ yarn.lock               # yarn锁定版本配置文件（自动生成）
 ```
+
+## 功能
+
+1. 普通 H5 开发中,引入组件化
+2. 引入 art-template 前端渲染引擎 —— 目前前端模版里速度最快
+3. 配置 dev-server 调试模式，proxy 代理接口调试
+4. 配置 watch 模式，方便在生产环境中用 Charles 映射到本地文件
+5. optimization 配置提取 runtime 代码
+6. splitChunks 配置，提取 vendor 主要缓存包，提取 common 次要缓存包
+7. 支持多页、多入口，自动扫描，可无限层级文件夹嵌套
+8. MockJs 模拟 mock 数据
+9. 接口代理
+10. eslint检查
+11. 常用性能优化手段
+12. 打包产物分析（webpack-bundle-analyzer）
