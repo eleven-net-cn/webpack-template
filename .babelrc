@@ -9,7 +9,7 @@
         // https://github.com/zloirock/core-js/blob/master/docs/2019-03-19-core-js-3-babel-and-a-look-into-the-future.md
         "corejs": {
           "version": 3, // 使用core-js@3
-          "proposals": true,
+          "proposals": true
         }
       }
     ]
