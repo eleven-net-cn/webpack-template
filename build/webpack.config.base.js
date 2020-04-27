@@ -149,5 +149,7 @@ module.exports = {
       BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),  // 编译环境（development/test/production）
       IS_MOCK: JSON.stringify(process.env.IS_MOCK), // 是否启用mock模拟数据
     }),
+    // 移除 moment 所有 local 文件（实际想要使用某个 local 文件，导入使用不会受影响）
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
 }

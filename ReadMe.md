@@ -98,3 +98,4 @@ webpack-template
 10. eslint 检查
 11. 常用性能优化手段
 12. 打包产物分析（webpack-bundle-analyzer）
+13. 增加 webpack.IgnorePlugin 常规处理 moment 庞大的 local 文件（同 create-react-app）
