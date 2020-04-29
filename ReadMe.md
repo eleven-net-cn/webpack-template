@@ -1,6 +1,10 @@
 # webpack-template
 
-为懒人准备的 webpack 模版，可以直接用于生产。这里单纯只做 webpack 构建、打包、代码的组织等，关于 React、Vue 等配置并不复杂，可以在需要时添加。随着 webpack 版本的迭代，会将最新的特性加入，持续更新......
+为懒人准备的 webpack 模版，演示从零纯手工搭建 webpack 的详细配置，移除示例的组件即可直接用于生产。
+
+这里单纯只做 webpack 构建、打包、代码的组织等示例，用简单的 js 去编写示例组件，关于 React、Vue 等配置并不复杂，可以在需要时添加。
+
+随着 webpack 版本的迭代，会将最新的特性加入，持续更新...
 
 ## 文档地址
 
@@ -60,7 +64,7 @@ webpack-template
    ├─ build/                  # webpack配置
    ├─ config/                 # 构建（环境）相关配置
    ├─ dist/                   # build输出目录
-   ├─ dist-watch/             # watch模式，build的输出目录
+   ├─ dist_watch/             # watch模式，build的输出目录
    ├─ node_modules/
    ├─ src                     # 源码
    │   ├─ assets/                  # 静态资源、全局样式

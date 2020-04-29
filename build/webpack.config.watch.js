@@ -17,7 +17,7 @@ module.exports = merge(base, {
   devtool: devtool,
   plugins: [
     ...utils.getHtmlWebpackPluginsProd(),
-    new CleanPlugin([path.resolve(__dirname, '..', 'dist-watch/*')], {
+    new CleanPlugin([path.resolve(__dirname, '..', 'dist_watch/*')], {
       allowExternal: true,
     }),
     new MiniCssExtractPlugin({

@@ -4,7 +4,7 @@ module.exports = {
   appBuild: resolveApp('build'),
   appConfig: resolveApp('config'),
   appDist: resolveApp('dist'),
-  appWatch: resolveApp('dist-watch'),
+  appWatch: resolveApp('dist_watch'),
   appSrc: resolveApp('src'),
   appAssets: resolveApp('src/assets'),
   appConstant: resolveApp('src/constant'),

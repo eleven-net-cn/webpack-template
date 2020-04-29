@@ -1,6 +1,6 @@
 /node_modules
 /dist
-/dist-watch
+/dist_watch
 
 # misc
 .DS_Store
