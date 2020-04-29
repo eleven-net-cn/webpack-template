@@ -61,7 +61,14 @@ webpack-template
    ├─ analyzer                # 打包产物分析
    │   ├─ index.html               # 分析报告
    │
-   ├─ build/                  # webpack配置
+   ├─ build                   # webpack配置
+   │   ├─ paths.js
+   │   ├─ utils.js
+   │   ├─ webpack.config.base.js
+   │   ├─ webpack.config.build.js
+   │   ├─ webpack.config.dev.js
+   │   ├─ webpack.config.watch.js
+   │
    ├─ config/                 # 构建（环境）相关配置
    ├─ dist/                   # build输出目录
    ├─ dist_watch/             # watch模式，build的输出目录
@@ -98,15 +105,16 @@ webpack-template
 ## 功能
 
 1. 支持多页、多入口，自动扫描，可无限层级文件夹嵌套
-2. 演示普通 H5 开发中，引入组件化
-3. 引入 art-template 前端渲染引擎 —— 目前前端模版里速度最快
-4. dev-server
-5. proxy 代理接口调试
-6. 增加 watch 模式，方便在生产环境中用 Charles 映射到本地文件
-7. optimization 提取 runtime 代码
-8. splitChunks 提取 vendor 主要缓存包，提取 common 次要缓存包
-9. MockJs 模拟 mock 数据
-10. eslint 检查
-11. 常用性能优化手段
-12. 打包产物分析（webpack-bundle-analyzer）
-13. 增加 webpack.IgnorePlugin 常规处理 moment 庞大的 local 文件（同 create-react-app）
+2. 区分编译环境 `development/test/uat/production`
+3. 演示普通 H5 开发中，组件化示例
+4. 引入 art-template 前端渲染引擎 —— 目前前端模版里速度最快
+5. dev-server
+6. proxy 代理接口调试
+7. 增加 watch 模式，方便在生产环境中用 Charles 映射到本地文件
+8. optimization 提取 runtime 代码
+9. splitChunks 提取 vendor 主要缓存包，提取 common 次要缓存包
+10. MockJs 模拟 mock 数据
+11. eslint 检查
+12. 常用性能优化手段
+13. 打包产物分析（webpack-bundle-analyzer）
+14. 增加 webpack.IgnorePlugin 常规处理 moment 庞大的 local 文件（同 create-react-app）
