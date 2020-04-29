@@ -57,22 +57,29 @@ webpack-template
    ├─ analyzer                # 打包产物分析
    │   ├─ index.html               # 分析报告
    │
-   ├─ build                   # webpack配置
-   ├─ config                  # 构建（环境）相关配置
-   ├─ dist                    # build输出目录
-   ├─ dist-watch              # watch模式，build的输出目录
-   ├─ node_modules
+   ├─ build/                  # webpack配置
+   ├─ config/                 # 构建（环境）相关配置
+   ├─ dist/                   # build输出目录
+   ├─ dist-watch/             # watch模式，build的输出目录
+   ├─ node_modules/
    ├─ src                     # 源码
-   │   ├─ assets                   # 静态资源、全局样式
-   │   ├─ common                   # 业务无关的通用组件
-   │   ├─ components               # 业务耦合的通用组件
-   │   ├─ constant                 # 常量配置
-   │   ├─ lib                      # 第三方工具包
-   │   ├─ mock                     # 开发调试，mock数据
-   │   ├─ pages                    # 页面级组件
-   │   ├─ service                  # 接口封装
-   │   ├─ utils                    # 工具
-   │   ├─ views                    # webpack打包入口、html模版
+   │   ├─ assets/                  # 静态资源、全局样式
+   │   ├─ common/                  # 业务无关的通用组件
+   │   ├─ components/              # 业务耦合的通用组件
+   │   ├─ constant/                # 常量配置
+   │   ├─ lib/                     # 第三方工具包
+   │   ├─ mock/                    # 开发调试，mock数据
+   │   ├─ pages/                   # 页面级组件
+   │   ├─ service/                 # 接口封装
+   │   ├─ utils/                   # 工具
+   │   ├─ views                    # webpack打包入口、html模版（文件夹可可以无限层级，并且任意命名，同一页面的 html 模版、js 入口需同名）
+   │        ├─ page-a                    # page-a
+   │        │     ├─ page-a.html                  # html 模版
+   │        │     ├─ page-a.js                    # js 入口
+   │        │
+   │        ├─ page-b                    # page-b
+   │              ├─ page-b.html                  # html 模版
+   │              ├─ page-b.js                    # js 入口
    │
    ├─ .babelrc                # babel配置
    ├─ .eslintignore           # eslint忽略配置
