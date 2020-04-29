@@ -28,24 +28,24 @@ yarn / yarn install    # 安装全部依赖包
 
 ```bash
 yarn start/dev         # 启动本地调试
-yarn dev:mock          # 启动本地调试，MockJs模拟接口数据
-yarn dev:page-a        # 启动本地调试，仅page-a页面
-yarn dev:page-b        # 启动本地调试，仅page-b页面
+yarn dev:mock          # 启动本地调试，MockJs 模拟接口数据
+yarn dev:page-a        # 启动本地调试，仅 page-a 页面
+yarn dev:page-b        # 启动本地调试，仅 page-b 页面
 
-# watch模式，移除了js、css的压缩，节省时间（watch时需要build压缩版代码，可自行修改）。
-yarn watch-dev         # 启动watch模式，本地开发环境（通常用不上）
-yarn watch-test        # 启动watch模式，测试环境
-yarn watch-prod        # 启动watch模式，生产环境
+# watch 模式，移除了 js、css 的压缩，节省时间（watch 时需要 build 压缩版代码，可自行修改）。
+yarn watch-dev         # 启动 watch 模式，本地开发环境（通常用不上）
+yarn watch-test        # 启动 watch 模式，测试环境
+yarn watch-prod        # 启动 watch 模式，生产环境
 ```
 
 打包
 
 ```bash
-yarn build-dev         # 打包代码，publicPath以/打头（可通过本地起服务访问build后的代码）
+yarn build-dev         # 打包代码，publicPath 以 / 打头（可通过本地起服务访问 build 后的代码）
 yarn build-test        # 打包测试环境代码
 yarn build-prod        # 打包生产环境代码
 
-yarn http-server       # 启动http-server服务器，可用来访问 build 在本地的代码
+yarn http-server       # 启动 http-server 服务器，可用来访问 build 在本地的代码
 ```
 
 打包产物分析
@@ -61,7 +61,7 @@ webpack-template
    ├─ analyzer                # 打包产物分析
    │   ├─ index.html               # 分析报告
    │
-   ├─ build                   # webpack配置
+   ├─ build                   # webpack 配置
    │   ├─ paths.js
    │   ├─ utils.js
    │   ├─ webpack.config.base.js
@@ -70,8 +70,8 @@ webpack-template
    │   ├─ webpack.config.watch.js
    │
    ├─ config/                 # 构建（环境）相关配置
-   ├─ dist/                   # build输出目录
-   ├─ dist_watch/             # watch模式，build的输出目录
+   ├─ dist/                   # build 输出目录
+   ├─ dist_watch/             # watch 模式，build 的输出目录
    ├─ node_modules/
    ├─ src                     # 源码
    │   ├─ assets/                  # 静态资源、全局样式
@@ -79,11 +79,11 @@ webpack-template
    │   ├─ components/              # 业务耦合的通用组件
    │   ├─ constant/                # 常量配置
    │   ├─ lib/                     # 第三方工具包
-   │   ├─ mock/                    # 开发调试，mock数据
+   │   ├─ mock/                    # 开发调试，mock 数据
    │   ├─ pages/                   # 页面级组件
    │   ├─ service/                 # 接口封装
    │   ├─ utils/                   # 工具
-   │   ├─ views                    # webpack打包入口、html模版（文件夹可可以无限层级，并且任意命名，同一页面的 html 模版、js 入口需同名）
+   │   ├─ views                    # webpack 打包入口、html 模版（文件夹可可以无限层级，并且任意命名，同一页面的 html 模版、js 入口需同名）
    │        ├─ page-a                    # page-a
    │        │     ├─ page-a.html                  # html 模版
    │        │     ├─ page-a.js                    # js 入口
@@ -92,14 +92,14 @@ webpack-template
    │              ├─ page-b.html                  # html 模版
    │              ├─ page-b.js                    # js 入口
    │
-   ├─ .babelrc                # babel配置
-   ├─ .eslintignore           # eslint忽略配置
-   ├─ .eslintrc.js            # eslint配置
+   ├─ .babelrc                # babel 配置
+   ├─ .eslintignore           # eslint 忽略配置
+   ├─ .eslintrc.js            # eslint 配置
    ├─ .gitignore
    ├─ package.json
-   ├─ postcss.config.js       # postcss配置
+   ├─ postcss.config.js       # postcss 配置
    ├─ README.md
-   ├─ yarn.lock               # yarn锁定版本配置文件（自动生成）
+   ├─ yarn.lock
 ```
 
 ## 功能
