@@ -54,6 +54,12 @@ yarn http-server       # 启动 http-server 服务器，可用来访问 build �
 yarn analyzer          # 查看最近一次打包的产物分析（webpack-bundle-analyzer）
 ```
 
+规范 commit
+
+```bash
+yarn commit            # 替代 git commit，终端交互提交
+```
+
 ## 目录
 
 ```bash
