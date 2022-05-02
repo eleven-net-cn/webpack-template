@@ -1,13 +1,13 @@
 # webpack-template
 
-演示从零搭建 webpack，风格借鉴 [create-react-app/react-scripts](https://vscode.dev/github/facebook/create-react-app)
+从零搭建 webpack，风格借鉴 [create-react-app/react-scripts](https://vscode.dev/github/facebook/create-react-app)
 
 ✅ 支持多页、多入口，自动扫描入口  
 ✅ 支持 TypeScirpt 开发  
 ✅ 支持 React 开发  
 ✅ 支持 watch 功能
 
-在熟练使用各类脚手架开发项目的时候，也希望能知晓 webpack 搭建的各种细节，并付诸实践，这是开始这项工作的初衷。
+在熟练使用各类脚手架开发的同时，也希望能知晓 webpack 搭建的各项细节，并付诸实践，这是开始这项工作的初衷。
 
 某些需要徒手搭建 webpack 编译的场景，这是一个 Project Template 选项。
 
@@ -44,16 +44,14 @@ yarn commit
 ├── dist/
 ├── public/
 │   ├── favicon.ico
-│   ├── page-a.html             # src/ 下，第一级目录的同名 .tsx 文件，将会被识别为页面入口文件
-│   └── page-b.html
+│   └── index.html              # src/ 下，第一级目录的同名 .tsx 文件，将会被识别为页面入口文件
 ├── scripts/
 │   ├── build.js
 │   ├── start.js
 │   └── watch.js
 ├── src/
 │   ├── utils/
-│   ├── page-a.tsx
-│   ├── page-b.tsx
+│   ├── index.tsx
 │   └── typings.d.ts
 ├── .env-cmdrc.js           # 区分环境，自动注入 process.env 环境变量
 ├── .eslintignore
