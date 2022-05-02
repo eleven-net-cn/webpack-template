@@ -1,25 +1,36 @@
+/**
+ * https://cn.eslint.org/docs/user-guide/configuring
+ */
+
 module.exports = {
-  "root": true,
-  "parserOptions": {
-    "sourceType": "module",
+  root: true,
+  extends: [
+    // https://github.com/umijs/fabric
+    require.resolve('@umijs/fabric/dist/eslint'),
+  ],
+  globals: {
+    BUILD_ENV: false,
   },
-  "parser": "babel-eslint", // eslint未支持的js新特性先进行转换
-  "env": {
-    "browser": true,
-    "es6": true,
-    "node": true,
-    "shared-node-browser": true,
-    "commonjs": true,
+  rules: {
+    '@typescript-eslint/consistent-type-definitions': 0,
+    '@typescript-eslint/no-invalid-this': 0,
+    '@typescript-eslint/consistent-type-imports': 0,
+    'no-underscore-dangle': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-dynamic-require': 0,
+    'react/sort-comp': 0,
+    'jsx-a11y/aria-role': 0,
+    'jsx-a11y/alt-text': 0,
+    'jsx-a11y/anchor-has-content': 0,
+    'jsx-a11y/control-has-associated-label': 0,
+    'no-param-reassign': 0,
+    'prefer-object-spread': 0,
+    'consistent-return': 0,
+    'react/button-has-type': 0,
+    'react/react-in-jsx-scope': 0,
+    'prefer-destructuring': 0,
+    'array-callback-return': 0,
+    'no-plusplus': 0,
+    'no-nested-ternary': 0,
   },
-  "globals": {    // 设置全局变量（false：不允许重写；）
-    "$": false,
-    "Zepto": false,
-    "BUILD_ENV": false,
-    "IS_MOCK": false,
-  },
-  "extends": "eslint:recommended", // 使用官方推荐规则，使用其他规则，需要先install，再指定。
-  "rules": {
-    "no-unused-vars": 1,
-    "no-console": 0,
-  }
-}
+};
