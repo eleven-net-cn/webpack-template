@@ -64,3 +64,9 @@ yarn commit
 ├── tsconfig.json
 └── yarn.lock
 ```
+
+## Q&A
+
+1. 如何添加更多页面、入口？
+
+   public/ 目录下新增 html 文件，src/ 目录（第一级）下新增同名入口文件（.tsx）即可，入口将被自动扫描。
