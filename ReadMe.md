@@ -54,8 +54,6 @@ yarn commit
 │   ├── index.tsx
 │   └── typings.d.ts
 ├── .env-cmdrc.js           # 区分环境，自动注入 process.env 环境变量
-├── .eslintignore
-├── .eslintrc.js
 ├── .gitignore
 ├── ReadMe.md
 ├── babel.config.js

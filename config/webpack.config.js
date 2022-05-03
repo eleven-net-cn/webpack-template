@@ -2,12 +2,14 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const CleanPlugin = require('clean-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Webpackbar = require('webpackbar');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { getEntries, createHtmlWebpackPlugins } = require('./utils');
+const { createEntry, createHtmlWebpackPlugins } = require('./utils');
 const paths = require('./paths');
 
 const shouldUseSourceMap = !!process.env.devtool;
@@ -22,7 +24,7 @@ module.exports = function (webpackEnv, options = {}) {
 
   return {
     mode: webpackEnv,
-    entry: getEntries(),
+    entry: createEntry(),
     output: {
       path: paths.appDist,
       pathinfo: isEnvDevelopment,
@@ -98,16 +100,6 @@ module.exports = function (webpackEnv, options = {}) {
             inputSourceMap: true,
           },
         },
-        // {
-        //   test: /\.js$/,
-        //   enforce: 'pre',
-        //   loader: 'eslint-loader',
-        //   include: paths.appSrc,
-        //   exclude: /node_modules/,
-        //   options: {
-        //     formatter: require('eslint-friendly-formatter'),
-        //   },
-        // },
         {
           test: /\.html$/,
           loader: 'html-loader',
@@ -149,10 +141,8 @@ module.exports = function (webpackEnv, options = {}) {
       ],
     },
     plugins: [
-      isEnvProduction &&
-        new CleanPlugin([path.resolve(__dirname, '..', 'dist/*')], {
-          allowExternal: true,
-        }),
+      new Webpackbar(),
+      isEnvProduction && new CleanWebpackPlugin(),
       ...createHtmlWebpackPlugins(webpackEnv),
       isEnvProduction &&
         new MiniCssExtractPlugin({
@@ -163,15 +153,35 @@ module.exports = function (webpackEnv, options = {}) {
       isEnvDevelopment && new webpack.NamedModulesPlugin(),
       analyzer && new BundleAnalyzerPlugin(),
       new webpack.DefinePlugin({
-        BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
+        'process.env': {
+          BUILD_ENV: JSON.stringify(process.env.BUILD_ENV),
+        },
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new ESLintWebpackPlugin({
+        extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
+        formatter: require.resolve('react-dev-utils/eslintFormatter'),
+        eslintPath: require.resolve('eslint'),
+        failOnError: isEnvProduction,
+        context: paths.appSrc,
+        cache: true,
+        cacheLocation: path.resolve(paths.appNodeModules, '.cache/.eslintcache'),
+        // ESLint class options
+        cwd: paths.appPath,
+        resolvePluginsRelativeTo: __dirname,
+        baseConfig: {
+          extends: [require.resolve('eslint-config-react-app/base')],
+          rules: {
+            // 'react/react-in-jsx-scope': 'error',
+          },
+        },
+      }),
     ].filter(Boolean),
     optimization: {
       minimize: isEnvProduction,
       minimizer: [
         // cheap-source-map选项不适用于此插件（TerserPlugin）
-        new TerserPlugin({
+        new TerserWebpackPlugin({
           terserOptions: {
             parse: {
               // we want terser to parse ecma 8 code. However, we don't want it
@@ -233,7 +243,7 @@ module.exports = function (webpackEnv, options = {}) {
         }),
       ],
       runtimeChunk: {
-        name: 'manifest',
+        name: (entrypoint) => `runtime-${entrypoint.name}`,
       },
       splitChunks: {
         chunks: 'all',
@@ -248,7 +258,7 @@ module.exports = function (webpackEnv, options = {}) {
             priority: 10, // 缓存组打包的先后优先级
             /**
              * 若 cacheGroup 中没有设置 minSize，则据此判断是否使用上层的 minSize
-             *  - true，则使用0
+             *  - true，使用 0
              *  - false，使用上层 minSize
              */
             enforce: true,

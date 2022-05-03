@@ -1,8 +1,5 @@
-// 是否为本地开发环境
-export const isDev = BUILD_ENV === 'development';
+export const isDev = process.env.BUILD_ENV === 'development';
 
-// 是否为测试环境
-export const isTest = BUILD_ENV === 'test';
+export const isTest = process.env.BUILD_ENV === 'test';
 
-// 是否为生产环境
-export const isProd = BUILD_ENV === 'production';
+export const isProd = process.env.BUILD_ENV === 'production';

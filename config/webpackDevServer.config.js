@@ -1,31 +1,22 @@
-const { entries } = require('./utils');
 const paths = require('./paths');
 const packageJson = require('../package');
-const keysEntries = Object.keys(entries);
-const hasIndexPage = keysEntries.includes('index');
-const defaultPage = hasIndexPage ? '' : `${keysEntries[0]}.html`;
 
-module.exports = function ({ entry }) {
-  const page = entry ? `${entry}.html` : defaultPage;
+module.exports = function () {
   const publicPath = process.env.PUBLIC_URL || '/';
-  const host = process.env.HOST || '0.0.0.0';
 
   return {
     publicPath,
-    // host,
     contentBase: paths.appPubic,
     contentBasePublicPath: publicPath,
     watchContentBase: true,
-    openPage: page,
-    index: page,
     inline: true,
     hot: true,
-    open: true,
+    open: false,
     compress: true,
-    disableHostCheck: true,
+    disableHostCheck: false,
     transportMode: 'ws',
-    quiet: true,
-    overlay: false,
+    quiet: false,
+    overlay: true,
     clientLogLevel: 'none',
     stats: 'errors-warnings',
     historyApiFallback: {

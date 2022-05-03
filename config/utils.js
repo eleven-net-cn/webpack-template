@@ -8,64 +8,81 @@ const resolveApp = (relativePath) => {
   return path.resolve(appDirectory, relativePath);
 };
 
-/**
- * 获取文件
- * @param {String} filesPath 文件目录
- * @returns {Object} 文件集合(文件名: 文件路径)
- */
 const getFiles = (filesPath) => {
-  let files = glob.sync(filesPath);
-  let obj = {};
-  let filePath, basename, extname;
+  const files = glob.sync(filesPath);
+  let obj = {},
+    filePath,
+    basename,
+    extname;
 
   for (let i = 0; i < files.length; i++) {
     filePath = files[i];
-    extname = path.extname(filePath); // 扩展名 eg: .html
-    basename = path.basename(filePath, extname); // 文件名 eg: index
-    // eg: { index: '/src/views/index/index.js' }
+    extname = path.extname(filePath);
+    basename = path.basename(filePath, extname);
     obj[basename] = path.resolve(appDirectory, filePath);
   }
+
   return obj;
 };
 
-/**
- * 打包入口
- *  - 与 public/*.html 文件同名的将会作为入口
- *  - 入口 js 的名称不允许重名
- */
-const entries = getFiles('src/*.tsx');
-
-/**
- * 页面的模版
- *  - 允许文件夹层级嵌套
- *  - html 的名称不允许重名
- */
-const templates = getFiles('public/**/*.html');
-
 const getEntries = () => {
+  const files = getFiles('src/*.tsx');
+
   let entry = {};
 
-  for (let name in entries) {
+  for (const name in files) {
+    if (templates.hasOwnProperty(name)) {
+      entry[name] = files[name];
+    }
+  }
+
+  return entry;
+};
+
+const isNotMulti = (entries) => {
+  const keys = Object.keys(entries);
+  return keys.length === 1;
+};
+
+const templates = getFiles('public/**/*.html');
+const entries = getEntries();
+
+const createEntry = () => {
+  if (isNotMulti(entries)) {
+    return Object.values(entries)[0];
+  }
+
+  let entry = {};
+
+  // multi entry/page
+  for (const name in entries) {
+    if (name === 'index') {
+      entry.main = entries[name];
+      continue;
+    }
+
     entry[name] = entries[name];
   }
+
   return entry;
 };
 
 const createHtmlWebpackPlugins = (webpackEnv) => {
   const isEnvProduction = webpackEnv === 'production';
+  const chunks = ['manifest', 'vendor', 'common'];
 
   let htmlWebpackPlugins = [];
-  let setting = null;
+  let options;
 
-  for (let name in templates) {
-    setting = {
+  for (const name in templates) {
+    options = {
       filename: `${name}.html`,
       template: templates[name],
       inject: false,
     };
 
     if (isEnvProduction) {
-      setting.minify = {
+      options.minify = {
         removeComments: true,
         collapseWhitespace: true,
         removeRedundantAttributes: true,
@@ -79,13 +96,15 @@ const createHtmlWebpackPlugins = (webpackEnv) => {
       };
     }
 
-    // (仅)有入口的模版自动引入资源
-    if (name in getEntries()) {
-      setting.chunks = ['manifest', 'vendor', 'common', name];
-      setting.inject = true;
+    if (entries.hasOwnProperty(name)) {
+      // multi entry/page
+      if (!isNotMulti(entries)) {
+        const chunkName = name === 'index' ? 'main' : name;
+        options.chunks = [`runtime-${chunkName}`, 'vendor', 'common', chunkName];
+      }
+      options.inject = true;
     }
-    htmlWebpackPlugins.push(new HtmlWebpackPlugin(setting));
-    setting = null;
+    htmlWebpackPlugins.push(new HtmlWebpackPlugin(options));
   }
 
   return htmlWebpackPlugins;
@@ -94,6 +113,6 @@ const createHtmlWebpackPlugins = (webpackEnv) => {
 module.exports = {
   resolveApp,
   entries,
-  getEntries,
+  createEntry,
   createHtmlWebpackPlugins,
 };

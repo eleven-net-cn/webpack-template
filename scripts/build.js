@@ -25,5 +25,5 @@ compiler.run((err, stats) => {
     return console.log(err);
   }
 
-  console.log(chalk.green('Build Completed'));
+  console.log(chalk.green('Build Completed.'));
 });
