@@ -1,11 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
+const resolve = require('resolve');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Webpackbar = require('webpackbar');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -158,6 +160,52 @@ module.exports = function (webpackEnv, options = {}) {
         },
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new ForkTsCheckerWebpackPlugin({
+        async: isEnvDevelopment,
+        typescript: {
+          typescriptPath: resolve.sync('typescript', {
+            basedir: paths.appNodeModules,
+          }),
+          configOverwrite: {
+            compilerOptions: {
+              sourceMap: isEnvProduction
+                ? shouldUseSourceMap
+                : isEnvDevelopment,
+              skipLibCheck: true,
+              inlineSourceMap: false,
+              declarationMap: false,
+              noEmit: true,
+              incremental: true,
+              tsBuildInfoFile: paths.appTsBuildInfoFile,
+            },
+          },
+          context: paths.appPath,
+          diagnosticOptions: {
+            syntactic: true,
+          },
+          mode: 'write-references',
+          // profile: true,
+        },
+        issue: {
+          // This one is specifically to match during CI tests,
+          // as micromatch doesn't match
+          // '../cra-template-typescript/template/src/App.tsx'
+          // otherwise.
+          include: [
+            { file: '../**/src/**/*.{ts,tsx}' },
+            { file: '**/src/**/*.{ts,tsx}' },
+          ],
+          exclude: [
+            { file: '**/src/**/__tests__/**' },
+            { file: '**/src/**/?(*.){spec|test}.*' },
+            { file: '**/src/setupProxy.*' },
+            { file: '**/src/setupTests.*' },
+          ],
+        },
+        logger: {
+          infrastructure: 'silent',
+        },
+      }),
       new ESLintWebpackPlugin({
         extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
         formatter: require.resolve('react-dev-utils/eslintFormatter'),
