@@ -20,6 +20,6 @@ module.exports = {
         },
       },
     ],
-    isEnvDevelopment && require.resolve('react-refresh/babel'),
+    // isEnvDevelopment && require.resolve('react-refresh/babel'),
   ].filter(Boolean),
 };

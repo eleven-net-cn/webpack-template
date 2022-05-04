@@ -52,9 +52,9 @@ const createEntry = () => {
     return Object.values(entries)[0];
   }
 
+  // multi entry/page
   let entry = {};
 
-  // multi entry/page
   for (const name in entries) {
     if (name === 'index') {
       entry.main = entries[name];

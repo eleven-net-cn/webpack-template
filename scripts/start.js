@@ -45,9 +45,7 @@ devServer.listen(port, host, (err) => {
   });
 });
 
-if (process.env.CI !== 'true') {
-  process.stdin.on('end', function () {
-    devServer.close();
-    process.exit();
-  });
-}
+process.stdin.on('end', function () {
+  devServer.close();
+  process.exit();
+});
