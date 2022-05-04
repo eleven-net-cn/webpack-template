@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlPlugin = require('html-webpack-plugin');
 const appDirectory = fs.realpathSync(process.cwd());
 
 const resolveApp = (relativePath) => {
@@ -67,11 +67,11 @@ const createEntry = () => {
   return entry;
 };
 
-const createHtmlWebpackPlugins = (webpackEnv) => {
+const createHtmlPlugins = (webpackEnv) => {
   const isEnvProduction = webpackEnv === 'production';
   const chunks = ['manifest', 'vendor', 'common'];
 
-  let htmlWebpackPlugins = [];
+  let htmlPlugins = [];
   let options;
 
   for (const name in templates) {
@@ -104,15 +104,15 @@ const createHtmlWebpackPlugins = (webpackEnv) => {
       }
       options.inject = true;
     }
-    htmlWebpackPlugins.push(new HtmlWebpackPlugin(options));
+    htmlPlugins.push(new HtmlPlugin(options));
   }
 
-  return htmlWebpackPlugins;
+  return htmlPlugins;
 };
 
 module.exports = {
   resolveApp,
   entries,
   createEntry,
-  createHtmlWebpackPlugins,
+  createHtmlPlugins,
 };

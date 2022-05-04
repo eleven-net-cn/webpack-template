@@ -3,15 +3,14 @@ const path = require('path');
 const resolve = require('resolve');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const Webpackbar = require('webpackbar');
-const TerserWebpackPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
-const ESLintWebpackPlugin = require('eslint-webpack-plugin');
+const ForkTsCheckerPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const { createEntry, createHtmlWebpackPlugins } = require('./utils');
+const { createEntry, createHtmlPlugins } = require('./utils');
 const paths = require('./paths');
 
 const shouldUseSourceMap = !!process.env.devtool;
@@ -144,8 +143,7 @@ module.exports = function (webpackEnv, options = {}) {
     },
     plugins: [
       new Webpackbar(),
-      isEnvProduction && new CleanWebpackPlugin(),
-      ...createHtmlWebpackPlugins(webpackEnv),
+      ...createHtmlPlugins(webpackEnv),
       isEnvProduction &&
         new MiniCssExtractPlugin({
           filename: watch ? 'static/css/[name].css' : 'static/css/[name].[contenthash:7].css',
@@ -160,7 +158,7 @@ module.exports = function (webpackEnv, options = {}) {
         },
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new ForkTsCheckerWebpackPlugin({
+      new ForkTsCheckerPlugin({
         async: isEnvDevelopment,
         typescript: {
           typescriptPath: resolve.sync('typescript', {
@@ -168,9 +166,7 @@ module.exports = function (webpackEnv, options = {}) {
           }),
           configOverwrite: {
             compilerOptions: {
-              sourceMap: isEnvProduction
-                ? shouldUseSourceMap
-                : isEnvDevelopment,
+              sourceMap: isEnvProduction ? shouldUseSourceMap : isEnvDevelopment,
               skipLibCheck: true,
               inlineSourceMap: false,
               declarationMap: false,
@@ -191,10 +187,7 @@ module.exports = function (webpackEnv, options = {}) {
           // as micromatch doesn't match
           // '../cra-template-typescript/template/src/App.tsx'
           // otherwise.
-          include: [
-            { file: '../**/src/**/*.{ts,tsx}' },
-            { file: '**/src/**/*.{ts,tsx}' },
-          ],
+          include: [{ file: '../**/src/**/*.{ts,tsx}' }, { file: '**/src/**/*.{ts,tsx}' }],
           exclude: [
             { file: '**/src/**/__tests__/**' },
             { file: '**/src/**/?(*.){spec|test}.*' },
@@ -206,7 +199,7 @@ module.exports = function (webpackEnv, options = {}) {
           infrastructure: 'silent',
         },
       }),
-      new ESLintWebpackPlugin({
+      new ESLintPlugin({
         extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
         formatter: require.resolve('react-dev-utils/eslintFormatter'),
         eslintPath: require.resolve('eslint'),
@@ -229,7 +222,7 @@ module.exports = function (webpackEnv, options = {}) {
       minimize: isEnvProduction,
       minimizer: [
         // cheap-source-map选项不适用于此插件（TerserPlugin）
-        new TerserWebpackPlugin({
+        new TerserPlugin({
           terserOptions: {
             parse: {
               // we want terser to parse ecma 8 code. However, we don't want it

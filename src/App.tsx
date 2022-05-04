@@ -1,7 +1,7 @@
 const App = () => {
   return (
     <>
-      <p style={{ textAlign: 'center' }}>Hello World</p>
+      <p>Hello World</p>
     </>
   );
 };

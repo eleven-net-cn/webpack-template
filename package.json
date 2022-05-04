@@ -36,7 +36,6 @@
     "babel-plugin-named-asset-import": "^0.3.8",
     "babel-preset-react-app": "^10.0.1",
     "cache-loader": "^4.0.0",
-    "clean-webpack-plugin": "^4.0.0",
     "commander": "^9.2.0",
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",

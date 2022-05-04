@@ -7,8 +7,11 @@ process.on('unhandledRejection', (err) => {
   throw err;
 });
 
+const path = require('path');
+const fs = require('fs-extra');
 const webpack = require('webpack');
 const chalk = require('chalk');
+const paths = require('../config/paths');
 const configFactory = require('../config/webpack.config');
 const { program } = require('commander');
 
@@ -19,6 +22,14 @@ const config = configFactory('production', {
   analyzer,
 });
 const compiler = webpack(config);
+const disableCopyFiles = ['.html', '.ico'];
+
+fs.emptyDirSync(paths.appDist);
+
+fs.copySync(paths.appPublic, paths.appDist, {
+  dereference: true,
+  filter: (file) => !disableCopyFiles.includes(path.extname(file)),
+});
 
 compiler.run((err, stats) => {
   if (err) {
