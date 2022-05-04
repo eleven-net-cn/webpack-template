@@ -51,6 +51,7 @@ yarn commit
 │   └── watch.js
 ├── src/
 │   ├── utils/
+│   ├── App.tsx
 │   ├── index.tsx
 │   └── typings.d.ts
 ├── .env-cmdrc.js           # 区分环境，自动注入 process.env 环境变量
