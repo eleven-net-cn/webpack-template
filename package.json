@@ -13,7 +13,7 @@
   "scripts": {
     "start": "env-cmd -e development node scripts/start.js",
     "watch": "env-cmd -e production node scripts/watch.js",
-    "build": "yarn build-prod",
+    "build": "nr build-prod",
     "build-test": "env-cmd -e test node scripts/build.js",
     "build-prod": "env-cmd -e production node scripts/build.js",
     "serve": "npx serve dist",
@@ -26,6 +26,7 @@
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {
+    "@antfu/ni": "^0.16.2",
     "@babel/core": "^7.17.10",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
     "@svgr/webpack": "^6.2.1",
