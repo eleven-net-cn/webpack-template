@@ -1,3 +1,5 @@
+'use strict';
+
 const { resolveApp } = require('./utils');
 
 module.exports = {
