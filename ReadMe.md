@@ -1,6 +1,6 @@
 # webpack-template
 
-从零搭建 webpack，风格借鉴 [create-react-app/react-scripts](https://vscode.dev/github/facebook/create-react-app)
+从零搭建 webpack，某些需要徒手搭建 webpack 编译的场景，这是一个 Project Template 选项。
 
 ✅ 支持多页、多入口，自动扫描入口  
 ✅ 支持 TypeScirpt 开发  
@@ -8,8 +8,6 @@
 ✅ 支持 watch 功能
 
 熟练使用各类脚手架工具的同时，也期望知晓 webpack 搭建的各项细节，并付诸实践，这是开始这项工作的初衷。
-
-某些需要徒手搭建 webpack 编译的场景，这是一个 Project Template 选项。
 
 ## Documentation
 
