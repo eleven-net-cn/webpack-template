@@ -32,9 +32,9 @@ module.exports = function (webpackEnv, options = {}) {
       path: paths.appDist,
       pathinfo: isEnvDevelopment,
       filename:
-        isEnvDevelopment || watch ? 'static/js/[name].js' : 'static/js/[name].[chunkhash:7].js',
+        isEnvDevelopment || watch ? 'static/js/[name].js' : 'static/js/[name].[contenthash:8].js',
       chunkFilename:
-        isEnvDevelopment || watch ? 'static/js/[name].js' : 'static/js/[name].[chunkhash:7].js',
+        isEnvDevelopment || watch ? 'static/js/[name].js' : 'static/js/[name].[contenthash:8].js',
       publicPath: process.env.PUBLIC_URL || '/',
       futureEmitAssets: true,
       globalObject: 'this',
@@ -148,8 +148,8 @@ module.exports = function (webpackEnv, options = {}) {
       ...createHtmlPlugins(webpackEnv),
       isEnvProduction &&
         new MiniCssExtractPlugin({
-          filename: watch ? 'static/css/[name].css' : 'static/css/[name].[contenthash:7].css',
-          chunkFilename: watch ? 'static/css/[name].css' : 'static/css/[name].[contenthash:7].css',
+          filename: watch ? 'static/css/[name].css' : 'static/css/[name].[contenthash:8].css',
+          chunkFilename: watch ? 'static/css/[name].css' : 'static/css/[name].[contenthash:8].css',
         }),
       isEnvProduction && new webpack.HashedModuleIdsPlugin(),
       isEnvDevelopment && new webpack.NamedModulesPlugin(),
