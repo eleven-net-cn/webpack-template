@@ -247,19 +247,19 @@ module.exports = function (webpackEnv, options = {}) {
               // Pending futher investigation:
               // https://github.com/terser-js/terser/issues/120
               inline: 2,
-              drop_debugger: shouldDropDebugger, // 删除debugger
-              drop_console: shouldDropConsole, // 删除console
+              drop_debugger: shouldDropDebugger, // remove debugger
+              drop_console: shouldDropConsole, // remove console
             },
             mangle: {
               safari10: true,
             },
             output: {
               ecma: 5,
-              comments: false, // 移除注释
+              comments: false, // remove comments
               // Turned on because emoji and regex is not minified properly using default
               // https://github.com/facebook/create-react-app/issues/2488
               ascii_only: true,
-              beautify: false, // 不美化输出
+              beautify: false,
             },
           },
           // Use multi-process parallel running to improve the build speed
