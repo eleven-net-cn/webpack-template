@@ -17,8 +17,11 @@ module.exports = function () {
     compress: true,
     disableHostCheck: false,
     transportMode: 'ws',
-    quiet: false,
-    overlay: true,
+    quiet: true,
+    overlay: {
+      errors: true,
+      warnings: false,
+    },
     clientLogLevel: 'none',
     stats: 'errors-warnings',
     historyApiFallback: {

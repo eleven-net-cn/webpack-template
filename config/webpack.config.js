@@ -3,15 +3,16 @@
 const webpack = require('webpack');
 const path = require('path');
 const resolve = require('resolve');
+const colors = require('picocolors');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { DEFAULT_EXTENSIONS } = require('@babel/core');
-const Webpackbar = require('webpackbar');
 const TerserPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const ForkTsCheckerPlugin = require('fork-ts-checker-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const { createEntry, createHtmlPlugins } = require('./utils');
 const paths = require('./paths');
 
@@ -41,9 +42,19 @@ module.exports = function (webpackEnv, options = {}) {
     },
     devtool: process.env.devtool || false,
     // Webpack noise constrained to errors and warnings
-    stats: 'errors-warnings',
+    // stats: 'errors-warnings',
+    stats: {
+      chunks: false,
+      assetsSort: 'size',
+      children: false,
+      entrypoints: false,
+      modules: false,
+      performance: false,
+      optimizationBailout: true,
+    },
     performance: {
-      hints: false, // 关闭文件体积较大提示
+      hints: false,
+      // maxAssetSize: 1000 * 1000,
     },
     node: {
       module: 'empty',
@@ -144,7 +155,17 @@ module.exports = function (webpackEnv, options = {}) {
       ],
     },
     plugins: [
-      new Webpackbar(),
+      new FriendlyErrorsWebpackPlugin({
+        compilationSuccessInfo: {
+          messages: isEnvDevelopment
+            ? [
+                `You can now view in the browser.\n\n ${colors.green('➜')}  ${colors.cyan(
+                  `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}/`,
+                )}\n`,
+              ]
+            : undefined,
+        },
+      }),
       ...createHtmlPlugins(webpackEnv),
       isEnvProduction &&
         new MiniCssExtractPlugin({

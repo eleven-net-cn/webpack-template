@@ -11,3 +11,5 @@ root.render(
     <App />
   </React.StrictMode>,
 );
+
+// const s:number = '123'
